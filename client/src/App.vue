@@ -10,7 +10,7 @@
       <v-divider></v-divider>
       <v-list dense>
         <v-list-item-group color="primary">
-          <v-list-item v-for="(item, i) in items" :key="i">
+          <v-list-item v-for="(item, i) in items" :key="i" :to="item.link" link>
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
@@ -29,9 +29,7 @@
     </v-app-bar>
 
     <v-main>
-      <router-view>
-        
-      </router-view>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -39,12 +37,12 @@
 <script>
 export default {
   data: () => ({
-     drawer: null,
-     items: [
-        { title: 'Home', icon: 'mdi-home', link: '/' },
-        { title: 'Add Post', icon: 'mdi-note-plus', link: "/add-post" },
-        { title: 'About', icon: 'mdi-help-box', link: '/about' },
-      ],
-    }),
+    drawer: null,
+    items: [
+      { title: "Home", icon: "mdi-home", link: "/" },
+      { title: "Add Post", icon: "mdi-note-plus", link: "/add-post" },
+      { title: "About", icon: "mdi-help-box", link: "/about" },
+    ],
+  }),
 };
 </script>
