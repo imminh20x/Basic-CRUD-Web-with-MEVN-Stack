@@ -77,7 +77,7 @@ export default {
         formData.append("old_image", this.post.image); 
         if(this.$refs.form.validate()){
             const response = await API.updatePost(this.$route.params.id, formData); 
-            this.$router.push({name: 'home', params:{message: response.message}});
+            this.$router.push({name: 'home', params: {message: response.message}});
         }
     }
   },

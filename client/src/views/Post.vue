@@ -21,9 +21,9 @@
                 <v-btn color="red" text @click="removePost(post._id)">Delete</v-btn>
               </v-col>
             </v-row>
-          </v-card-actions>
+          </v-card-actions> 
           <v-card-subtitle class="headline">
-            {{ post.title }}
+            <h3>{{ post.title }}</h3>
           </v-card-subtitle>
           <v-card-text class="grey--text">
             <p>{{ post.content }}</p>
@@ -43,7 +43,7 @@ export default {
       post: {},
     };
   },
-  async created() {
+  async created() {   
     const response = await API.getPostByID(this.$route.params.id);
     this.post = response;
   },
