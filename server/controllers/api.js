@@ -1,5 +1,6 @@
 const Post = require("../models/posts");
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 module.exports = class API {
   //fetch all posts
@@ -14,14 +15,31 @@ module.exports = class API {
 
   //fetch post by id
   static async fetchPostByID(req, res) {
-    const id = req.params.id;
+    const { id } = req.params;
+    const condition = {
+      _id: id && mongoose.isValidObjectId(id) ? id : null,
+    };
+  
     try {
-      const post = await Post.findById(id);
-      res.status(200).json(post);
+      const document = await Post.findById(condition);
+      if (!document) {
+        return next(new BadRequestError(404, "Contact not found"));
+      }
+  
+      return res.send(document);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
-  }
+  };
+  // static async fetchPostByID(req, res) {
+  //   const id = req.params.id;
+  //   try {
+  //     const post = await Post.findById(id);
+  //     res.status(200).json(post);
+  //   } catch (err) {
+  //     res.status(404).json({ message: err.message });
+  //   }
+  // }
 
   //create a post
   static async createPost(req, res) {
@@ -31,7 +49,7 @@ module.exports = class API {
     try {
       await Post.create(post);
       res.status(201).json({ message: "Post created successfully!" });
-    } catch (error) {
+    } catch (err) {
       res.status(400).json({ message: err.message });
     }
   }

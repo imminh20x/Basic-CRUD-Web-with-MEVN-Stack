@@ -2,13 +2,12 @@
   <v-container>
     <v-row no-gutters>
       <v-col sm="10" class="mx-auto">
-        <v-card class="pa-5">
-          <v-card-title>Add New Post</v-card-title>
-          <v-divider></v-divider>
+        <v-card>
+          <v-card-title class='d-flex justify-center'>Content</v-card-title>
           <v-form
             ref="form"
             @submit.prevent="submitForm"
-            class="pa-5"
+            class="pa-4"
             enctype="multipart/form-data"
           >
             <v-text-field
@@ -38,7 +37,7 @@
               label="Select Image"
             ></v-file-input>
             <v-btn type="submit" class="mt-4 mx-2" color="primary"
-              >Add Post
+              >Add Review
             </v-btn>
           </v-form>
         </v-card>

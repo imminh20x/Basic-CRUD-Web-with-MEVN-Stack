@@ -8,11 +8,12 @@ export default class API{
         return res.data; //returns an array of posts
     }
 
+
     //get a post by id
     static async getPostByID(id){
         const res = await axios.get(`${url}/${id}`); 
         return res.data;
-    }   
+    }  
 
     // to create a new post
     static async addPost(post){
